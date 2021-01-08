@@ -238,13 +238,6 @@ if __name__ == "__main__":
      numofNASDAQ, numFilledNASDAQ, partialNASDAQ, cancelNASDAQ, expireNASDAQ = NASDAQOrders(myFile)
      numofLSE, numFilledLSE, partialLSE, cancelLSE, expireLSE = LSEOrders(myFile)
      numofPAR,numFilledPAR, partialPAR, cancelPAR, expirePAR = PAROrders(myFile)
-    
-     totalFills = numFilledNYSE + numFilledNASDAQ + numFilledLSE + numFilledPAR
-     totalPartialFills = partialNYSE + partialNASDAQ+ partialLSE+ partialPAR
-     totalCancels = cancelNYSE + cancelNASDAQ + cancelLSE+cancelPAR
-     totalExpired = expireNYSE+ expireNASDAQ+expireLSE+ expirePAR
-     
-     print(totalFills)
      
      y = PrettyTable()
      y.field_names = ["Total Number of Orders"]
@@ -258,4 +251,5 @@ if __name__ == "__main__":
      x.add_row(["PAR",numofPAR, numFilledPAR, partialPAR,  cancelPAR,expirePAR])
      print(y)
      print(x)
+    
      marketPieChart(numOfNYSEOrders, numofNASDAQ, numofLSE, numofPAR)
