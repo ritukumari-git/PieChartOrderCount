@@ -230,6 +230,22 @@ def marketPieChart(numOfNYSEOrders, numofNASDAQ, numofLSE, numofPAR):
     plt.axis('equal')
     plt.show()
 
+def marketPieChart2(totalFills, totalPartialFills, totalCancels, totalExpired):
+    # Data to plot
+    #labels = 'Python', 'C++', 'Ruby', 'Java'
+    labels = 'Fills', 'PartialFills', 'Cancels', 'Expired'
+    sizes = [totalFills, totalPartialFills, totalCancels, totalExpired]
+    colors = ['yellowgreen', 'gold', 'lightcoral', 'lightskyblue']
+    explode = (0, 0, 0, 0)  # explode slice
+    patches, texts = plt.pie(sizes, colors=colors, shadow=True, startangle=90)
+    plt.legend(patches, labels, loc="best")
+    plt.savefig('pic.png')
+    #plot=>plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+    plt.pie(sizes, explode=explode, colors=colors,
+    autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.show()
+
 if __name__ == "__main__":
      myFile="/Users/coolritz/Documents/PYTHON/CODE/messages.txt"
      total = totalNumberOfOrders(myFile)
@@ -238,6 +254,11 @@ if __name__ == "__main__":
      numofNASDAQ, numFilledNASDAQ, partialNASDAQ, cancelNASDAQ, expireNASDAQ = NASDAQOrders(myFile)
      numofLSE, numFilledLSE, partialLSE, cancelLSE, expireLSE = LSEOrders(myFile)
      numofPAR,numFilledPAR, partialPAR, cancelPAR, expirePAR = PAROrders(myFile)
+    
+     totalFills = int(numFilledNYSE) + int(numFilledNASDAQ) + int(numFilledLSE) + int(numFilledPAR)
+     totalPartialFills = int(partialNYSE) + int(partialNASDAQ)+ int(partialLSE)+ int(partialPAR)
+     totalCancels = int(cancelNYSE) + int(cancelNASDAQ) + int(cancelLSE) + int(cancelPAR)
+     totalExpired = int(expireNYSE)+ int(expireNASDAQ) + int(expireLSE) + int(expirePAR)
      
      y = PrettyTable()
      y.field_names = ["Total Number of Orders"]
@@ -249,7 +270,9 @@ if __name__ == "__main__":
      x.add_row(["NASDAQ",numofNASDAQ, numFilledNASDAQ, partialNASDAQ,cancelNASDAQ, expireNASDAQ])
      x.add_row(["LSE",numofLSE,numFilledLSE,partialLSE, cancelLSE,expireLSE ])
      x.add_row(["PAR",numofPAR, numFilledPAR, partialPAR,  cancelPAR,expirePAR])
+     
      print(y)
      print(x)
-    
+     
      marketPieChart(numOfNYSEOrders, numofNASDAQ, numofLSE, numofPAR)
+     marketPieChart2(totalFills, totalPartialFills, totalCancels, totalExpired)
