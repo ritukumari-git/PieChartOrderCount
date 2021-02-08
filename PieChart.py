@@ -247,7 +247,7 @@ def market_pie_chart2(total_fills, total_partial_fills, total_cancels, total_exp
     plt.show()
 
 if __name__=="__main__":
-     my_file="messages.txt"
+     my_file="log.txt"
      total = total_orders(my_file)
      
      num_of_NYSE_orders, num_filled_NYSE, partial_NYSE, cancelled_NYSE, expired_NYSE = nyse_orders(my_file)
