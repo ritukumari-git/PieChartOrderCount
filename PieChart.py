@@ -1,3 +1,13 @@
+"""
+This script is using matplot, subprocess and Prettytable libraries to prcess the file named - "log.txt".
+
+This script achieves the following:
+1- Total NewOrders placed in a day.
+2- Shows market wise - TotalNewOrders, Fills, partal Fills, cancelled and Expired in a tabular.
+3- It shows the percentage distribustion of the NewOrders per Market in a Pie chart.
+4- And lastly, it shows the percentage of the Fills, PartialFills, Cancels and Expired orders in a Pie Chart.
+"""
+
 #!/usr/bin/env python3
 
 import matplotlib.pyplot as plt
@@ -216,7 +226,6 @@ def par_orders(file_name):
 
 def market_pie_chart(num_of_NYSE_orders, num_of_NASDAQ_orders, num_of_LSE_orders, num_of_PAR_orders):
     # Data to plot
-    #labels = 'Python', 'C++', 'Ruby', 'Java'
     labels = 'NYSE', 'NASDAQ', 'LSE', 'PAR'
     sizes = [num_of_NYSE_orders, num_of_NASDAQ_orders, num_of_LSE_orders, num_of_PAR_orders]
     colors = ['yellowgreen', 'gold', 'lightcoral', 'lightskyblue']
@@ -232,7 +241,6 @@ def market_pie_chart(num_of_NYSE_orders, num_of_NASDAQ_orders, num_of_LSE_orders
 
 def market_pie_chart2(total_fills, total_partial_fills, total_cancels, total_expired):
     # Data to plot
-    #labels = 'Python', 'C++', 'Ruby', 'Java'
     labels = 'Fills', 'PartialFills', 'Cancels', 'Expired'
     sizes = [total_fills, total_partial_fills, total_cancels, total_expired]
     colors = ['yellowgreen', 'gold', 'lightcoral', 'lightskyblue']
